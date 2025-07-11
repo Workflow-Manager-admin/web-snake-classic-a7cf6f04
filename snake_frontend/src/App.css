@@ -1,104 +1,116 @@
-/* CSS Variables for Theme Management */
 :root {
-  /* Light theme colors */
-  --bg-primary: #ffffff;
-  --bg-secondary: #f8f9fa;
-  --text-primary: #282c34;
-  --text-secondary: #61dafb;
-  --border-color: #e9ecef;
-  --button-bg: #007bff;
-  --button-text: #ffffff;
-}
-
-[data-theme="dark"] {
-  /* Dark theme colors */
-  --bg-primary: #1a1a1a;
-  --bg-secondary: #282c34;
-  --text-primary: #ffffff;
-  --text-secondary: #61dafb;
-  --border-color: #404040;
-  --button-bg: #0056b3;
-  --button-text: #ffffff;
+  --primary-color: #4CAF50;
+  --secondary-color: #333333;
+  --accent-color: #FFD600;
+  --bg-color: #ffffff;
+  --text-color: #333333;
+  --grid-size: 20px;
+  --board-size: 400px;
 }
 
 .App {
   text-align: center;
-  background-color: var(--bg-primary);
-  color: var(--text-primary);
   min-height: 100vh;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  background-color: var(--bg-color);
+  padding: 20px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+h1 {
+  color: var(--primary-color);
+  margin-bottom: 30px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: var(--bg-secondary);
-  min-height: 100vh;
+.game-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: var(--text-primary);
-  transition: background-color 0.3s ease;
-  position: relative;
+  gap: 20px;
 }
 
-.App-link {
-  color: var(--text-secondary);
-  transition: color 0.3s ease;
+.score-board {
+  font-size: 24px;
+  font-weight: bold;
+  color: var(--secondary-color);
 }
 
-.theme-toggle {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  background-color: var(--button-bg);
-  color: var(--button-text);
-  border: none;
+.game-board {
+  width: var(--board-size);
+  height: var(--board-size);
+  background-color: var(--secondary-color);
   border-radius: 8px;
-  padding: 10px 20px;
-  font-size: 14px;
-  font-weight: 600;
+  overflow: hidden;
+}
+
+.row {
+  display: flex;
+  height: calc(var(--board-size) / var(--grid-size));
+}
+
+.cell {
+  width: calc(var(--board-size) / var(--grid-size));
+  height: 100%;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.snake {
+  background-color: var(--primary-color);
+  border-radius: 4px;
+}
+
+.food {
+  background-color: var(--accent-color);
+  border-radius: 50%;
+}
+
+.controls {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.control-button {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  font-size: 18px;
+  border-radius: 8px;
   cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s, opacity 0.2s;
 }
 
-.theme-toggle:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+.control-button:hover {
   opacity: 0.9;
+  transform: translateY(-2px);
 }
 
-.theme-toggle:active {
+.control-button:active {
   transform: translateY(0);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.game-over {
+  color: var(--accent-color);
+  font-size: 24px;
+  font-weight: bold;
 }
 
-/* Responsive design for mobile */
-@media (max-width: 768px) {
-  .theme-toggle {
-    top: 10px;
-    right: 10px;
-    padding: 8px 16px;
-    font-size: 12px;
+/* Responsive design */
+@media (max-width: 500px) {
+  :root {
+    --board-size: 300px;
+  }
+
+  h1 {
+    font-size: 24px;
+  }
+
+  .score-board {
+    font-size: 20px;
+  }
+
+  .control-button {
+    padding: 10px 20px;
+    font-size: 16px;
   }
 }
